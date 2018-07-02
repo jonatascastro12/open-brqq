@@ -16,7 +16,7 @@ It should create a sqlite file
 6. Run: `python manage.py createsuperuser` to create admin user - follow screen instructions
 7. To start the server: `python manage.py runserver 0.0.0.0:8000`
 
-Now you whould access *http://localhost:8000* in your browser. 
+Now you can access *http://localhost:8000* in your browser. 
 Click on "Run Video Crawler" button to start the crawler.
 It should last about 2-5 minutes...
 You can see all data at *http://localhost:8000/admin*. Use the credentials that you created at step 6.
@@ -30,7 +30,7 @@ You can also access sqlite database directly, so that, you can make SQL queries 
 - Although there is 5070 Brazilian municipalities, not all videos have subtitles
 
 ## Goals ##
-- To get a municipality subtitle there is a tricky work to split a video's subtitle that contains 5-7 municipality - we expect someone to improve this process
+- To get a municipality subtitle there is a tricky job to split a video's subtitle that contains 5-7 municipality - we expect someone to improve this process
 - As stated before, not all videos have subtitles - another tricky job is to generate new subtitles to the videos without subtitles
 
 ## Thanks and Attributions ##
