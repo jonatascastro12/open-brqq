@@ -1,0 +1,71 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Funções
+                </div>
+                <div class="card-body">
+                    <a class="btn btn-primary" href="{% url 'download_db' %}">Baixar DB Sqlite</a>
+                    <a class="btn btn-primary" href="{% url 'run_crawler' %}">Varrer API de Videos</a>
+                    <a class="btn btn-primary" href="{% url 'clean_subtitles' %}">Limpar legendas</a>
+                    <a class="btn btn-primary" href="{% url 'run_word_counter' %}">Contar Palavras</a>
+                    <a class="btn btn-primary" href="{% url 'run_google_nlp' %}">Google NLP</a>
+                    <a class="btn btn-primary" href="{% url 'run_comparison_google' %}">Comparação Manual/Google</a>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    Últimas varreduras
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Concluído</th>
+                            <th>Status</th>
+                        </tr>
+
+                        {% for task in tasks %}
+                            <tr>
+                                <td>{{ task.id }}</td>
+                                <td>{{ task.date_done }}</td>
+                                <td>{{ task.result.current }}/{{ task.result.total }}</td>
+                                <td>{{ task.status }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Estatísticas
+                </div>
+                <div class="card-body">
+                    <p>Número de Municípios: {{ num_municipios }}</p>
+                    <p>Municípios com vídeo: {{ num_municipios_com_video }}
+                        ({{ num_municipios_com_video_pct|floatformat:0 }}%)</p>
+                    <p>Municípios com vídeo e legenda: {{ num_municipios_com_video_e_legenda }}
+                        ({{ num_municipios_com_video_e_legenda_pct|floatformat:0 }}%)</p>
+                    <hr>
+
+                    <p>Municípios legenda tratada: {{ num_municipios_legenda_tratada }}</p>
+
+                    <p>Municípios com análise: {{ num_municipios_com_analise }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main><!-- /.container -->
+
+
+{% include 'footer.html' %}

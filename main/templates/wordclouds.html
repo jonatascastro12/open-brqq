@@ -1,0 +1,32 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2>Sem filtros (quebra em palavras apenas)</h2>
+            <img src="{% static 'images/all.png' %}">
+
+            <hr>
+            <h2>Filtrado (frequencia simples)</h2>
+
+            <img src="{% static 'images/filtered1.png' %}">
+            <br>
+            <small><strong>FILTRO:</strong> {{ filter1 }}</small>
+            <hr>
+
+            <h2>Google NLP (entidades sem filtro)</h2>
+            <img src="{% static 'images/all_entities.png' %}">
+
+             <hr>
+
+            <h2>Extração manual de entidades</h2>
+            <img src="{% static 'images/manual_extraction_keywords.png' %}">
+
+
+        </div>
+    </div>
+</main><!-- /.container -->
+
+{% include 'footer.html' %}

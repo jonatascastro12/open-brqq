@@ -1,0 +1,165 @@
+
+
+{% load static %}
+
+{% include 'header.html' %}
+
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <div class="card-header">
+                    Google NLP analysis - per state
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+
+                        <tr>
+                            <th>UF</th>
+                            <th>Keyword</th>
+                            <th>Count</th>
+                            <th>Gen. Sent.</th>
+                            <th>Cities Count</th>
+
+                        </tr>
+
+                        {% for uf in analysis.per_uf %}
+                            {% for word in uf.google_wordcount %}
+                                <tr>
+                                    {% if forloop.first %}
+                                        <td class="align-middle"
+                                            rowspan="{{ uf.google_wordcount|length }}">{{ uf.uf }}</td>
+                                    {% endif %}
+                                    <td>{{ word.0 }}</td>
+                                    <td>{{ word.1 }}</td>
+                                    {% if forloop.first %}
+                                        <td class="align-middle"
+                                            rowspan="{{ uf.google_wordcount|length }}">{{ uf.google_sentiment|floatformat:2 }}</td>
+                                        <td class="align-middle"
+                                            rowspan="{{ uf.google_wordcount|length }}">{{ uf.cities_count }}</td>
+
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Manual analysis - per state
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+
+                        <tr>
+                            <th>UF</th>
+                            <th>Keyword</th>
+                            <th>Count</th>
+                            <th>Sentiment</th>
+                            <th>Gen. Sent.</th>
+                            <th>Cities Count</th>
+                        </tr>
+
+                        {% for uf in analysis.per_uf %}
+                            {% for word in uf.manual_analysis %}
+                                <tr>
+                                    {% if forloop.first %}
+                                        <td class="align-middle"
+                                            rowspan="{{ uf.manual_analysis|length }}">{{ uf.uf }}</td>
+                                    {% endif %}
+                                    <td>{{ word.key }}</td>
+                                    <td>{{ word.analysis.count }}</td>
+                                    <td>{{ word.analysis.sentiment|floatformat:2 }}</td>
+                                    {% if forloop.first %}
+                                        <td class="align-middle"
+                                            rowspan="{{ uf.manual_analysis|length }}">{{ uf.manual_analysis_sentiment|floatformat:2 }}</td>
+                                        <td class="align-middle"
+                                            rowspan="{{ uf.manual_analysis|length }}">{{ uf.cities_count }}</td>
+
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Comparison metrics (manual / google) per state
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+
+                        <tr>
+                            <th>UF</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F-Measure</th>
+                        </tr>
+
+                        {% for uf in analysis.per_uf %}
+                            <tr>
+                                <td>{{ uf.uf }}</td>
+                                <td>{{ uf.precision|floatformat:2 }}</td>
+                                <td>{{ uf.recall|floatformat:2 }}</td>
+                                <td>{{ uf.f_measure|floatformat:2 }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Estatísticas Gerais (Manual/Google NLP)
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Média - Precisão</th>
+                            <th>Média - Recall</th>
+                            <th>Média - F_Measure</th>
+                        </tr>
+                        <tr>
+                            <td>{{ result.media_precision | floatformat:4 }}</td>
+                            <td>{{ result.media_recall | floatformat:4 }}</td>
+                            <td>{{ result.media_fmeas | floatformat:4 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Desvio padrão - Precisão</th>
+                            <th>Desvio padrão - Recall</th>
+                            <th>Desvio padrão - F_Measure</th>
+                        </tr>
+                        <tr>
+                            <td>{{ result.desvio_precision | floatformat:4 }}</td>
+                            <td>{{ result.desvio_recall | floatformat:4 }}</td>
+                            <td>{{ result.desvio_fmeas | floatformat:4 }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main><!-- /.container -->
+
+{% include 'footer.html' %}
