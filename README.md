@@ -25,7 +25,7 @@ You can also access sqlite database directly, so that, you can make SQL queries 
 ## Things you should know ##
 - At this site: https://especiais.g1.globo.com/o-brasil-que-eu-quero/2018/videos/, we found API that links each municipality to a video ID. You can find this API using Chrome Developer Tools
 - For each video, there is between 5-7 municipalities speech
-- To get video informations we are using globo's public API that can be catched at a video endpoint (using Chrome Dev Tools too)
+- To get video informations we are using globo's public API that can be catched at a video endpoint (the API was found using Chrome Dev Tools too)
 - We get the subtitle that is provided by this API
 - Although there is 5070 Brazilian municipalities, not all videos have subtitles
 
