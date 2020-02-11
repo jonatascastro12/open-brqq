@@ -12,7 +12,7 @@ chardet==3.0.4
 constantly==15.1.0
 cryptography==2.2.2
 cycler==0.10.0
-Django==2.0.5
+Django==2.2.10
 django-celery-results==1.0.1
 django-dotenv==1.4.2
 google-api-core==1.1.2
