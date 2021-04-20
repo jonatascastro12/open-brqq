@@ -1,7 +1,7 @@
 amqp==2.2.2
 asn1crypto==0.24.0
 attrs==18.1.0
-autobahn==18.5.2
+autobahn==20.12.3
 Automat==0.6.0
 billiard==3.5.0.3
 cachetools==2.1.0
